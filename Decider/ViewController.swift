@@ -12,39 +12,55 @@ import CoreLocation
 
 class ViewController: UIViewController {
 
+    // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
     
-    let locationManager = CLLocationManager()
+    // MARK: - Properties
+    private let locationManager = CLLocationManager()
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        let searchBar = UISearchBar()
-        searchBar.delegate = self
         
-        self.navigationItem.titleView = searchBar
-        
-        locationManager.requestWhenInUseAuthorization()
+        setupSeachBar()
+        setupMapView()
         
         if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.requestLocation()
+            findUserLocation();
+        } else {
+            locationManager.requestWhenInUseAuthorization()
         }
-        
+    }
+    
+    // MARK: - Private Functions
+    
+    private func setupSeachBar() {
+        let searchBar = UISearchBar()
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
+    }
+    
+    private func setupMapView() {
         mapView.showsUserLocation = true
+    }
+    
+    private func findUserLocation() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestLocation()
     }
 }
 
+// MARK: - UISearchBarDelegate
 extension ViewController: UISearchBarDelegate {
     
 }
 
+// MARK: - CLLocationManagerDelegate
 extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.requestLocation()
+            findUserLocation()
         }
     }
     
