@@ -81,8 +81,11 @@
 				4B6209FB20C80592009E5FEE /* DeciderTests */,
 				4B620A0620C80592009E5FEE /* DeciderUITests */,
 				4B6209E520C80590009E5FEE /* Products */,
+				4B620A1520C810ED009E5FEE /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
 		};
 		4B6209E520C80590009E5FEE /* Products */ = {
 			isa = PBXGroup;
@@ -123,6 +126,13 @@
 				4B620A0920C80592009E5FEE /* Info.plist */,
 			);
 			path = DeciderUITests;
+			sourceTree = "<group>";
+		};
+		4B620A1520C810ED009E5FEE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +203,11 @@
 				TargetAttributes = {
 					4B6209E320C80590009E5FEE = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					4B6209F720C80592009E5FEE = {
 						CreatedOnToolsVersion = 10.0;
