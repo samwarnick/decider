@@ -30,8 +30,6 @@ class ViewController: UIViewController {
         } else {
             locationManager.requestWhenInUseAuthorization()
         }
-        
-        // testing build number
     }
     
     // MARK: - Private Functions
